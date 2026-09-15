@@ -1,8 +1,7 @@
 # Sangam’s Journal
 
 Roll No. 1024170388  
-Name: Sangam Sangwan  
-Role: Person B — AI / Product  
+Name: Sangam Sangwan
 
 +  [W1 : Overlay Glassmorphism Layout and Renderer State Machine Transitions](./w1-glass-layout-fsm.md)
 +  [W2 : Atomic JSON Store Persistence and Secure Settings IPC Roundtrip](./w2-store-persistence.md)
