@@ -1,0 +1,246 @@
+\documentclass{tietreport}
+
+% Import images
+\usepackage{graphicx}
+
+% Bibliography configuration
+\usepackage[
+  date=year,
+  style=alphabetic,
+  backend=biber,
+  sorting=nty,
+  maxnames=5,
+  minnames=3,
+  maxalphanames=4,
+  minalphanames=3,
+  backref=true,
+  doi=false,
+  isbn=false,
+  url=false,
+  eprint=false
+]{biblatex}
+\addbibresource{references.bib}
+
+%% ==================================================
+%% CUSTOMIZE THESE FIELDS FOR YOUR PROJECT
+%% ==================================================
+
+% Course/Lab header
+\TitlePageHeader{%
+  Your Course Code - Course Title%
+}
+
+% Main project title
+\ProjectTitle{%
+  Cue: Real-Time Desktop AI Copilot%
+}
+
+% Subtitle or project description
+\ProjectSubTitle{%
+  Screen-Aware Assistance Through a Floating Desktop Interface%
+}
+
+% Student information (up to 4 students)
+\author{%
+  \texttt{1024170400} Samyak Jain \\
+  \texttt{1024170388} Sangam Sangwan%
+}
+
+% Group number, degree, year, program
+\TitlePageSubText{%
+  BE Third Year, CSE%
+}
+
+% Faculty advisor/guide name
+\AdvisorName{%
+  Ms Paramveer Sidhu%
+}
+
+% Evaluation period and department info
+\TitlePageFooterText{{%
+    \large Project Progress Evaluation \\[0.2cm]
+    \bfseries Computer Science and Engineering
+    Department%
+  } \\[0.15cm]
+  Thapar Institute of Engineering and Technology,
+  Patiala%
+}
+
+%% ==================================================
+
+\begin{document}
+
+% Generate title page
+\maketitle
+
+% Table of contents (auto-generated from chapters)
+\tableofcontents
+
+% ===== CHAPTER 1: INTRODUCTION =====
+
+\chapter{Introduction}
+
+\section{Background and Context}
+
+Modern desktop work often requires users to switch between their active application and separate AI tools to ask questions about on-screen information. During coding, studying, or working with documents, manually explaining the visible context creates friction and interrupts concentration.
+
+Cue is a desktop AI copilot designed to make assistance accessible through a floating interface. The current implementation focuses on desktop integration, screenshot capture, and asking questions about on-screen content. The longer-term goal is to extend this screen context with voice and audio from calls so that the assistant can provide more context-aware help during conversations.
+
+\subsection{Problem Statement}
+
+Traditional chat-based assistants generally rely on information that users manually type or upload. They may not have direct access to the context currently visible on the user's desktop. This makes it harder to ask questions about a screen, code snippet, or application without changing windows or copying information.
+
+The project addresses this problem by building a desktop application that can stay accessible while the user works and provide assistance based on captured screen content. Future work will extend the context available to the assistant to include voice and audio from calls.
+
+\section{Project Objectives}
+
+\begin{enumerate}
+  \item \textbf{Desktop accessibility:} Build a floating desktop interface that can be invoked while the user continues working in other applications.
+  \item \textbf{Screenshot capture:} Capture the current screen when needed to provide visual context to an AI model.
+  \item \textbf{On-screen assistance:} Allow users to ask questions about visible content and receive context-aware responses.
+  \item \textbf{Screen-share testing:} Evaluate the application's visibility behavior during video calls and screen recording on the team's laptops.
+  \item \textbf{Voice and call context:} Extend the application to listen to relevant voice and video-call audio and use that context in subsequent assistance.
+\end{enumerate}
+
+% ===== CHAPTER 2: METHODOLOGY & DESIGN =====
+
+\chapter{Methodology and Design}
+
+\section{System Architecture}
+
+Cue is implemented as a desktop application. Its architecture combines a floating user interface, desktop integration, screenshot capture, and communication with an AI model. The current milestone is centered on screenshot-based and on-screen support; voice and video-call listening and context integration remain the next stage of development.
+
+\subsection{High-Level Design}
+
+The current workflow is as follows:
+
+\begin{enumerate}
+  \item The user opens Cue and invokes the assistant from its desktop interface.
+  \item When screen context is required, the application captures a screenshot.
+  \item The user submits a question or request related to the visible content.
+  \item The screenshot and request are used to construct an AI prompt.
+  \item The response is displayed through the Cue interface.
+\end{enumerate}
+
+The next stage is to add voice and video-call listening context so that relevant conversation audio can be transcribed or otherwise processed and incorporated into requests. This work is not presented as completed in the current progress report.
+
+\subsection{Technical Stack}
+
+\begin{itemize}
+  \item \textbf{Desktop framework:} Electron.
+  \item \textbf{Application language:} JavaScript and Node.js.
+  \item \textbf{Screen capture:} Electron desktop-capture functionality.
+  \item \textbf{AI integration:} Configurable AI model/provider integration used for screen-aware responses.
+  \item \textbf{Development and testing:} Local development and testing on team laptops, including trials during video calls and screen recording.
+\end{itemize}
+
+\section{Implementation Details}
+
+\subsection{Module 1: Desktop Interface and Screenshot Capture}
+
+The application provides a floating desktop interface intended to remain accessible while the user works in other applications. Screenshot capture supplies visual context for questions about on-screen content. This forms the current functional milestone of the project.
+
+\subsection{Module 2: On-Screen Assistance}
+
+The screenshot-based workflow allows the user to ask questions about content visible on the screen and receive an AI-generated response. The current progress is focused on making this workflow operate end to end, from invoking the interface and capturing the screen to submitting the request and displaying the answer.
+
+\subsection{Project Progress}
+
+The following items describe the current progress without treating planned functionality as already implemented:
+
+\begin{itemize}
+  \item \textbf{Completed:} Desktop application and floating interface.
+  \item \textbf{Completed:} Screenshot capture and on-screen assistance workflow.
+  \item \textbf{Tested:} The application was run on the team's laptops during video calls and while screen recording. In these tests, the Cue window was not visible in the call/recording output.
+  \item \textbf{Next:} Add voice and video-call listening so the assistant can use conversation audio as context.
+\end{itemize}
+
+The screen-recording and video-call result above describes the team's observed tests on its laptops. It should not be interpreted as a guarantee that Cue will be hidden from every recording tool, operating system, or capture configuration.
+
+% ===== CHAPTER 3: RESULTS & EVALUATION =====
+
+\chapter{Results and Evaluation}
+
+\section{Testing Methodology}
+
+Testing so far has focused on running the application on the team's own laptops and verifying the screenshot-based desktop workflow. The application was also tested during video calls and while screen recording to check whether the Cue window appeared in the call or recorded output.
+
+\begin{itemize}
+  \item \textbf{Functional testing:} Ran the application locally and checked the screenshot and on-screen assistance workflow.
+  \item \textbf{Video-call testing:} Ran Cue while participating in video calls and observed whether the Cue window appeared in the call output.
+  \item \textbf{Screen-recording testing:} Ran screen recording while Cue was open and checked the resulting recording for visibility of the Cue window.
+  \item \textbf{Observed result:} In the team's laptop tests, the Cue window was not visible in the video-call/recording output.
+  \item \textbf{Next tests:} Validate voice and video-call listening context once implemented, and repeat the visibility tests across the supported operating systems and capture applications.
+\end{itemize}
+
+These are practical tests performed on the team's laptops. A wider compatibility matrix has not been established in this report, so the observed visibility result should be treated as limited to the tested setups.
+
+\section{Performance Metrics}
+
+The current evaluation is qualitative and focuses on the completed screenshot and on-screen assistance workflow. No verified latency, transcription-accuracy, or throughput measurements are reported at this stage.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Metric} & \textbf{Current Status} \\
+  \hline
+  Desktop application runs locally & Tested on team laptops \\
+  \hline
+  Screenshot and on-screen support & Implemented and tested \\
+  \hline
+  Visibility during tested video calls & Cue window not observed in call output \\
+  \hline
+  Visibility during tested screen recordings & Cue window not observed in recording output \\
+  \hline
+  Voice and call-audio context & Next development milestone \\
+  \hline
+  Quantitative performance benchmarks & Not yet measured \\
+  \hline
+\end{tabular}
+\caption{Current implementation and evaluation status}
+\label{tab:performance}
+\end{table}
+
+\section{Analysis}
+
+The current milestone establishes the core desktop workflow: Cue can run on the team's laptops, capture screenshot context, and support questions about on-screen content. The team also tested the application's visibility during video calls and screen recording and did not observe the Cue window in those outputs on the tested setups.
+
+The main remaining functional step is to incorporate voice and video-call listening context. Once that capability is implemented, it should be evaluated for transcription or context quality, response usefulness, latency, and platform-specific behavior. The visibility result should also be tested on additional operating systems and capture tools before making broader compatibility claims.
+
+% ===== CHAPTER 4: CONCLUSION =====
+
+\chapter{Conclusion}
+
+\section{Summary of Work}
+
+The project has reached the screenshot and on-screen assistance milestone. The desktop application runs on the team's laptops, and its current workflow provides a way to capture screen context and ask questions about visible content. The team has also tested the application during video calls and screen recording; in those tests, the Cue window was not visible in the resulting call or recording output.
+
+\section{Key Findings}
+
+\begin{itemize}
+  \item \textbf{Core screen workflow:} Screenshot capture and on-screen assistance are the current completed functional focus.
+  \item \textbf{Initial visibility testing:} On the team's tested laptop setups, the Cue window was not observed in video-call or screen-recording output.
+  \item \textbf{Next milestone:} Voice and video-call listening context is the next development task and should be evaluated after implementation.
+\end{itemize}
+
+\section{Future Work and Recommendations}
+
+\begin{enumerate}
+  \item Implement voice and video-call listening context.
+  \item Integrate relevant call audio into the assistant's context and test the end-to-end workflow.
+  \item Evaluate response usefulness and latency with repeatable scenarios.
+  \item Repeat screen visibility tests across different operating systems, video-call applications, and screen-recording tools.
+  \item Document the limitations of capture exclusion and ensure testing and use follow relevant consent and platform requirements.
+\end{enumerate}
+
+\section{Final Remarks}
+
+The project has established its initial desktop and screenshot-based assistance workflow. The immediate priority is to build on that foundation by incorporating voice and video-call context, followed by systematic functional and compatibility testing.
+
+% ===== BIBLIOGRAPHY =====
+
+% Print bibliography with heading in TOC
+\printbibliography[heading=bibintoc]
+
+\end{document}
